@@ -13,15 +13,15 @@
   <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
   
   
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="Thinking," />
   
 
   
-    <meta name="description" content="红眼睛蓝眼睛问题" />
+    <meta name="description" content="红眼睛蓝眼睛" />
   
   
   <link rel="icon" type="image/x-icon" href="/avatar.png">
-  <title>红眼睛蓝眼睛问题 [ xyma ]</title>
+  <title>红眼睛蓝眼睛 [ xyma ]</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -75,19 +75,19 @@
   <article class="post" id="post">
     <header class="post-header text-center">
       <h1 class="title">
-        红眼睛蓝眼睛问题
+        红眼睛蓝眼睛
       </h1>
       <span>
         
-        <time class="time" datetime="2021-04-21T13:02:15.000Z">
-        2021-04-21
+        <time class="time" datetime="2021-04-22T13:30:52.000Z">
+        2021-04-22
       </time>
         
       </span>
       <span class="slash">/</span>
       <span class="post-meta">
       <span class="post-tags">
-        
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thinking/" rel="tag">Thinking</a></li></ul>
       </span>
     </span>
       <span class="slash">/</span>
@@ -95,11 +95,41 @@
       <span id="busuanzi_value_page_pv"></span> 点击
     </span>
       <span class="slash">/</span>
-      <span class="read">阅读耗时 1 分钟</span>
+      <span class="read">阅读耗时 5 分钟</span>
     </header>
 
     <div class="post-content">
-      
+      <blockquote>
+<p>A group of people with assorted eye colors live on an island. They are all perfect logicians -- if a conclusion can be logically deduced, they will do it instantly. No one knows the color of their eyes. Every night at midnight, a ferry stops at the island. Any islanders who have figured out the color of their own eyes then leave the island, and the rest stay. Everyone can see everyone else at all times and keeps a count of the number of people they see with each eye color (excluding themselves), but they cannot otherwise communicate. Everyone on the island knows all the rules in this paragraph. <a target="_blank" rel="noopener" href="https://xkcd.com/blue_eyes.html">blue eyes</a></p>
+</blockquote>
+<p>If there were <strong>100</strong> people living in this island, <strong>5 of them with red eyes and the others with blue eyes.</strong> One day a tourist arrived on this island, and said, "<strong>There are both red eyes and blue eyes here</strong>".</p>
+<p>So the questions is:</p>
+<p><strong>Who leaves the island, and on what night?</strong></p>
+<span id="more"></span>
+<h4 id="解题思路">解题思路</h4>
+<p>​ 初看题目，这个旅行家似乎没有未这个岛上带来任何额外信息：岛上每个人都可以看到剩下的99个人，都可以看到既有红眼睛又有蓝眼睛的存在。 那为什么会有人离开呢？我们可以试着从简单的情况入手：</p>
+<ul>
+<li>1 红色 &amp; 99 蓝色
+<ul>
+<li>这个时候，旅行家的话就带来了明显的额外信息，最初的红眼睛并不知道岛上既有红眼睛又有蓝眼睛。当旅行家说完之后，他就能立刻推断出自己眼睛颜色，所以当天晚上就会离开岛屿。</li>
+<li>但题目毕竟不是1个，我们继续</li>
+</ul></li>
+<li>2 红色 &amp; 98 蓝色
+<ul>
+<li>这个稍微复杂一些，初看似乎也没有引入额外信息， 但其实不然。不妨假设红眼睛为A，B。 最初AB都知道岛上既有红眼睛又有蓝眼睛，但是AB都不能确定对方知不知道这个信息，因为自己本身既可能是红色也可能是蓝色。</li>
+<li>旅行家的话让AB确信对方都知道这个信息，那么AB就可以对自己眼睛进行假设。我们以A为例，A假设自己是蓝色眼睛，那么B之前就应该看到99个蓝色眼睛，当旅行家阐述完之后，当天晚上B就应该离开岛屿。所以第一天过去之后，如果B没有离开岛屿，那么A自己就不可能是蓝色眼睛，只能是红色。这个A就会离开，同理B也会离开。</li>
+</ul></li>
+<li>3 红色 &amp; 97 蓝色
+<ul>
+<li>更加复杂，但是假设都是一样的，即红色眼睛假设自己眼睛为蓝色，然后推断其他红色眼睛的行为。</li>
+<li>那为什么旅行者来之前不可以假设呢？原因就是 A 无法确定B 是否确定 C 是否知道岛上既有红眼睛又有蓝眼睛。但是旅行者的话，让这个信息链条可以无限传输。</li>
+</ul></li>
+</ul>
+<h4 id="收获">收获</h4>
+<ul>
+<li>所有人都知道 != 共识， 共识需要任意两点之间的联系都可以确定对方知道。</li>
+<li>复杂的问题可以从特例出发思考。</li>
+</ul>
 
     </div>
 
@@ -107,6 +137,11 @@
   </article>
   <div class="toc-container">
     
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">Posts</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B6%E8%8E%B7"><span class="toc-text">收获</span></a></li></ol>
+  </div>
+
 
   </div>
 </div>

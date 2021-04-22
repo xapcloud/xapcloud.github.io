@@ -13,15 +13,15 @@
   <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
   
   
-    <meta name="keywords" content="Algorithm," />
+    <meta name="keywords" content="" />
   
 
   
-    <meta name="description" content="每天一个算法-快排" />
+    <meta name="description" content="xyma," />
   
   
   <link rel="icon" type="image/x-icon" href="/avatar.png">
-  <title>每天一个算法-快排 [ xyma ]</title>
+  <title>category: Thinking [ xyma ]</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -71,81 +71,44 @@
 
   <div class="container" id="content-outer">
     <div class="inner" id="content-inner">
-      <div class="post-container">
-  <article class="post" id="post">
-    <header class="post-header text-center">
-      <h1 class="title">
-        每天一个算法-快排
-      </h1>
-      <span>
-        
-        <time class="time" datetime="2020-03-20T06:27:33.000Z">
-        2020-03-20
-      </time>
-        
-      </span>
-      <span class="slash">/</span>
-      <span class="post-meta">
-      <span class="post-tags">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
-      </span>
-    </span>
-      <span class="slash">/</span>
-      <span class="read">
-      <span id="busuanzi_value_page_pv"></span> 点击
-    </span>
-      <span class="slash">/</span>
-      <span class="read">阅读耗时 1 分钟</span>
-    </header>
+      
 
-    <div class="post-content">
-      <blockquote>
-<p>Quick Sort wikipedia 上的实现</p>
-</blockquote>
-<span id="more"></span>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuickSort</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">qSort</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> head, <span class="keyword">int</span> tail)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (head &gt;= tail || arr == <span class="keyword">null</span> || arr.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">         <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">int</span> i = head, j = tail, pivot = arr[(head + tail) / <span class="number">2</span>];</span><br><span class="line">      <span class="keyword">while</span> (i &lt;= j) &#123;</span><br><span class="line">         <span class="keyword">while</span> (arr[i] &lt; pivot) &#123;</span><br><span class="line">            ++i;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">while</span> (arr[j] &gt; pivot) &#123;</span><br><span class="line">            --j;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">if</span> (i &lt; j) &#123;</span><br><span class="line">            <span class="keyword">int</span> t = arr[i];</span><br><span class="line">            arr[i] = arr[j];</span><br><span class="line">            arr[j] = t;</span><br><span class="line">            ++i;</span><br><span class="line">            --j;</span><br><span class="line">         &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i == j) &#123;</span><br><span class="line">            ++i;</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      qSort(arr, head, j);</span><br><span class="line">      qSort(arr, i, tail);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      <span class="comment">//int[] arr = new int[]&#123;1, 4, 8, 2, 55, 3, 4, 8, 6, 4, 0, 11, 34, 90, 23, 54, 77, 9, 2, 9, 4, 10&#125;;</span></span><br><span class="line">      <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>&#125;;</span><br><span class="line">      qSort(arr, <span class="number">0</span>, arr.length - <span class="number">1</span>);</span><br><span class="line">      System.out.println(Arrays.toString(arr));</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-    </div>
-
-    <div>全文完。</div>
-  </article>
-  <div class="toc-container">
+  
+  
     
-
-  </div>
-</div>
-<div class="copyright">
-    <span>本作品采用</span>
-    <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>
-    <span>进行许可。 转载时请注明原文链接。</span>
-</div>
-<div class="share" style="width: 100%;">
-  <div style="margin: auto; text-align: center; font-size: 0.8em; color: grey;">常怀感恩</div>
+    
+    <section class="post page archives">
+      <h3 class="archive-year-wrap">
+        <a href="/archives/2021" class="archive-year">
+          2021
+        </a>
+      </h3>
+      <div class="archives">
   
-</div>
-
-  
-    <div class="post-nav">
-      <div class="post-nav-item post-nav-next">
-        
-          <span>〈 </span>
-          <a href="/2020/03/19/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E7%AE%97%E6%B3%95-MergeSort/" rel="next" title="每天一个算法-MergeSort">
-          每天一个算法-MergeSort
-          </a>
-        
-      </div>
-  
-      <div class="post-nav-item post-nav-prev">
-          
-          <a href="/2021/04/22/%E7%BA%A2%E7%9C%BC%E7%9D%9B%E8%93%9D%E7%9C%BC%E7%9D%9B/" rel="prev" title="红眼睛蓝眼睛">
-            红眼睛蓝眼睛
-          </a>
-          <span>〉</span>
-        
-      </div>
+  <div class="archive" >
+  <a class="post-go" href="/2021/04/22/红眼睛蓝眼睛/">
+    <div>
+      <span class="date">
+        04-22
+      </span>
+      <span class="slash">/</span>
+      红眼睛蓝眼睛
     </div>
-  
 
+    <!--<div class="excerpt">-->
+      <!--<blockquote>
+<p>A group of people with assorted eye colors live on an island. They are all perfect logicians -- if a conclusion can be logically deduced, they will do it instantly. No one knows the color of their eyes. Every night at midnight, a ferry stops at the island. Any islanders who have figured out the color of their own eyes then leave the island, and the rest stay. Everyone can see everyone else at all times and keeps a count of the number of people they see with each eye color (excluding themselves), but they cannot otherwise communicate. Everyone on the island knows all the rules in this paragraph. <a target="_blank" rel="noopener" href="https://xkcd.com/blue_eyes.html">blue eyes</a></p>
+</blockquote>
+<p>If there were <strong>100</strong> people living in this island, <strong>5 of them with red eyes and the others with blue eyes.</strong> One day a tourist arrived on this island, and said, "<strong>There are both red eyes and blue eyes here</strong>".</p>
+<p>So the questions is:</p>
+<p><strong>Who leaves the island, and on what night?</strong></p>-->
+    <!--</div>-->
+  </a>
+
+</div>
+
+
+  </div></section>
 
     </div>
 
