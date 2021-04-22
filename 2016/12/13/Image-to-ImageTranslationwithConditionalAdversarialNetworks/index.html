@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#202020"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+  
+  
+    <meta name="keywords" content="GAN,arXiv," />
+  
+
+  
+    <meta name="description" content="『论文阅读』Image-to-Image Translation with Conditional Adversarial Networks" />
+  
+  
+  <link rel="icon" type="image/x-icon" href="/avatar.png">
+  <title>『论文阅读』Image-to-Image Translation with Conditional Adversarial Networks [ xyma ]</title>
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css">
+    
+      <link rel="stylesheet" href="/css/xoxo.css">
+    
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <div class="nav-container">
+    <nav class="home-menu pure-menu pure-menu-horizontal">
+  <a class="pure-menu-heading" href="/">
+    <img class="avatar" src="http://xyma.me/images/avatar.png">
+    <span class="title">xyma</span>
+  </a>
+
+  <ul class="pure-menu-list clearfix">
+      
+          
+            <li class="pure-menu-item"><a href="/" class="pure-menu-link">主页</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/archives/" class="pure-menu-link">所有文章</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/tags/" class="pure-menu-link">标签云</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/me/" class="pure-menu-link">关于我</a></li>
+          
+      
+  </ul>
+   
+</nav>
+
+  </div>
+
+  <div class="container" id="content-outer">
+    <div class="inner" id="content-inner">
+      <div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        『论文阅读』Image-to-Image Translation with Conditional Adversarial Networks
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2016-12-13T12:29:08.000Z">
+        2016-12-13
+      </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GAN/" rel="tag">GAN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arXiv/" rel="tag">arXiv</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">
+      <span id="busuanzi_value_page_pv"></span> 点击
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 3 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <blockquote>
+<p>来源：<a href="https://link.zhihu.com/?target=https%3A//phillipi.github.io/pix2pix/">Image-to-Image Translation with Conditional Adversarial Nets</a></p>
+<p>源码：<a target="_blank" rel="noopener" href="https://github.com/phillipi/pix2pix">Github</a></p>
+</blockquote>
+<p>这篇文章主要提供了一个基于cGAN的模型，并且利用这个general的模型可以同时应用到多个任务场景中去，而不需要额外设置模型结果和目标函数。</p>
+<ul>
+<li>Photos to semantic segmentation</li>
+<li>Cityscapes labels to photos</li>
+<li>Colorization</li>
+<li>Facades labels to photo</li>
+<li>Day to night</li>
+<li>The edges to photo</li>
+<li>And so on.</li>
+</ul>
+<span id="more"></span>
+<h1 id="section"></h1>
+<p>cGAN的generator： <span class="math display">\[
+G：{x, z} → G(x,z) → y
+\]</span> <strong>x</strong>: input image, <strong>z</strong>: noise image, <strong>y:</strong> real image</p>
+<p>Discriminator主要工作即尽量区分开<span class="math inline">\(G(x,z)\)</span> 和<span class="math inline">\(y\)</span> 的区别。而generator则尽量使得Discriminator区分不开。</p>
+<p>本文的主要贡献是在cGAN的基础上做了一些改进。</p>
+<h2 id="objective-function">Objective Function</h2>
+<p>对于目标函数进行了修改，在原有GAN网络的目标函数的的基础上，加上了L1约束，使得generator生成的图像与原图像尽量相近。感觉类似一个AutoEncoder的过程。</p>
+<p><img src="/images/ItoI2.png" /></p>
+<h2 id="network-architecture">Network Architecture</h2>
+<h3 id="generator-with-skips">Generator with Skips</h3>
+<p>A defining feature of image-to-image translation problems is that they map a high resolution input grid to a high resolu- tion output grid. In addition, for the problems we consider, the input and output differ in surface appearance, but both are renderings of the same underlying structure. Therefore, structure in the input is roughly aligned with structure in the output. We design the generator architecture around these considerations.</p>
+<p>即认为原图和目标图片存在相同的底部结构。所以对于模型的生成部分，采用U-Net.</p>
+<figure>
+<img src="/images/ItoI1.png" alt="Architecture of Generator" /><figcaption aria-hidden="true">Architecture of Generator</figcaption>
+</figure>
+<p>U-net 结构如下图：</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1505.04597v1.pdf">U-Net: Convolutional Networks for Biomedical Image Segmentation</a></p>
+<p><img src="/images/ItoI3.png" /></p>
+<h3 id="markovian-discriminator">Markovian Discriminator</h3>
+<p>通常判断都是对生成样本整体进行判断，比如对一张图片来说，就是直接看整张照片是否真实。而且Image-to-Image Translation中很多评价是像素对像素的，所以在这里提出了分块判断的算法，在图像的每个<span class="math inline">\(N\times N\)</span>块上去判断是否为真，最终平均给出结果。</p>
+<h1 id="总结">总结：</h1>
+<p>The results in this paper suggest that conditional adver- sarial networks are a promising approach for many image- to-image translation tasks, especially those involving highly structured graphical outputs. These networks learn a loss adapted to the task and data at hand, which makes them ap- plicable in a wide variety of settings.</p>
+
+    </div>
+
+    <div>全文完。</div>
+  </article>
+  <div class="toc-container">
+    
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">Posts</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#section"><span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#objective-function"><span class="toc-text">Objective Function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#network-architecture"><span class="toc-text">Network Architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#generator-with-skips"><span class="toc-text">Generator with Skips</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#markovian-discriminator"><span class="toc-text">Markovian Discriminator</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结：</span></a></li></ol>
+  </div>
+
+
+  </div>
+</div>
+<div class="copyright">
+    <span>本作品采用</span>
+    <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>
+    <span>进行许可。 转载时请注明原文链接。</span>
+</div>
+<div class="share" style="width: 100%;">
+  <div style="margin: auto; text-align: center; font-size: 0.8em; color: grey;">常怀感恩</div>
+  
+</div>
+
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/2016/12/13/hello-world/" rel="next" title="Hello World">
+          Hello World
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/2016/12/14/SearchA2DMatrixII/" rel="prev" title="『Leetcode』Search a 2D Matrix II">
+            『Leetcode』Search a 2D Matrix II
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
+    </div>
+
+    
+
+  </div>
+  <footer class="footer text-center">
+    <div id="bottom-inner">
+        <a class="bottom-item" target="_blank" rel="noopener" href="https://xyma.com">首页</a> |
+        <a class="bottom-item" href="https://xyma.com" target="_blank">主站</a> |
+        <a class="bottom-item" href="https://github.com/xapcloud" target="_blank">GitHub</a> |
+        <a class="bottom-item" href="https://hexo.io" target="_blank">Powered by hexo</a> |
+        <a class="bottom-item" href="https://github.com/KevinOfNeu/hexo-theme-xoxo" target="_blank">Theme xoxo</a>
+    </div>
+</footer>
+  
+
+<script>
+  (function(window, document, undefined) {
+
+    var timer = null;
+
+    function returnTop() {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(function fn() {
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+          timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+
+    var hearts = [];
+    window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          setTimeout(callback, 1000 / 60);
+        }
+    })();
+    init();
+
+    function init() {
+      css(".heart{z-index:9999;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+      attachEvent();
+      gameloop();
+      addMenuEvent();
+    }
+
+    function gameloop() {
+      for (var i = 0; i < hearts.length; i++) {
+        if (hearts[i].alpha <= 0) {
+          document.body.removeChild(hearts[i].el);
+          hearts.splice(i, 1);
+          continue;
+        }
+        hearts[i].y--;
+        hearts[i].scale += 0.004;
+        hearts[i].alpha -= 0.013;
+        hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+      }
+      requestAnimationFrame(gameloop);
+    }
+
+    /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+  
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

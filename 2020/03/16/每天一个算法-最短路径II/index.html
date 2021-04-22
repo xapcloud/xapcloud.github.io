@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#202020"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+  
+  
+    <meta name="keywords" content="Algorithm," />
+  
+
+  
+    <meta name="description" content="每天一个算法-最短路径II" />
+  
+  
+  <link rel="icon" type="image/x-icon" href="/avatar.png">
+  <title>每天一个算法-最短路径II [ xyma ]</title>
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css">
+    
+      <link rel="stylesheet" href="/css/xoxo.css">
+    
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <div class="nav-container">
+    <nav class="home-menu pure-menu pure-menu-horizontal">
+  <a class="pure-menu-heading" href="/">
+    <img class="avatar" src="http://xyma.me/images/avatar.png">
+    <span class="title">xyma</span>
+  </a>
+
+  <ul class="pure-menu-list clearfix">
+      
+          
+            <li class="pure-menu-item"><a href="/" class="pure-menu-link">主页</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/archives/" class="pure-menu-link">所有文章</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/tags/" class="pure-menu-link">标签云</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/me/" class="pure-menu-link">关于我</a></li>
+          
+      
+  </ul>
+   
+</nav>
+
+  </div>
+
+  <div class="container" id="content-outer">
+    <div class="inner" id="content-inner">
+      <div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        每天一个算法-最短路径II
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-03-16T04:23:40.000Z">
+        2020-03-16
+      </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">
+      <span id="busuanzi_value_page_pv"></span> 点击
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 5 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <ul>
+<li>A* Algorithm</li>
+<li>Breadth First Search</li>
+</ul>
+<span id="more"></span>
+<blockquote>
+<p>简单实现BFS和A* 算法</p>
+<p>更多实现参考 https://www.redblobgames.com/pathfinding/a-star/implementation.html</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Node</span>&gt;</span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x;</span><br><span class="line">	<span class="keyword">int</span> y;</span><br><span class="line">	Node parent;</span><br><span class="line">	<span class="keyword">int</span> gScore;</span><br><span class="line">	<span class="keyword">int</span> hScore;</span><br><span class="line">	<span class="keyword">int</span> fScore;</span><br><span class="line"></span><br><span class="line">	Node()&#123;&#125;;</span><br><span class="line">	Node(<span class="keyword">int</span> x, <span class="keyword">int</span> y)&#123;</span><br><span class="line">		<span class="keyword">this</span>.x = x;</span><br><span class="line">		<span class="keyword">this</span>.y = y;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setParent</span><span class="params">(Node parent)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.parent = parent;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setgScore</span><span class="params">(<span class="keyword">int</span> gScore)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.gScore = gScore;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sethScore</span><span class="params">(<span class="keyword">int</span> hScore)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.hScore = hScore;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setfScore</span><span class="params">(<span class="keyword">int</span> fScore)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.fScore = fScore;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Node o)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.fScore - o.fScore;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">this</span> == o)</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		<span class="keyword">if</span>(!(o <span class="keyword">instanceof</span> Node))</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		Node n = (Node)o;</span><br><span class="line">		<span class="keyword">return</span> n.x == <span class="keyword">this</span>.x &amp;&amp; n.y == <span class="keyword">this</span>.y;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// bad hashCode but correct</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> String.format(<span class="string">&quot;x = %s\ty = %s\tgScore = %s\thScore = %s\tfScore = %s\t&quot;</span>, <span class="keyword">this</span>.x, <span class="keyword">this</span>.y, <span class="keyword">this</span>.gScore,<span class="keyword">this</span>.hScore, <span class="keyword">this</span>.fScore);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AStar</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[][]matrix = &#123;&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;&#125;;</span><br><span class="line">		System.out.println(AStar(matrix,<span class="number">4</span>,<span class="number">8</span>));</span><br><span class="line">		System.out.println(bfs(matrix,<span class="number">4</span>,<span class="number">8</span>));</span><br><span class="line">	&#125;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * From (0,0) to (m-1,n-1)</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> matrix : 0 means empty and 1 means obstacle</span></span><br><span class="line"><span class="comment">	 */</span>  </span><br><span class="line">	<span class="comment">//breadth-first search</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">bfs</span><span class="params">(<span class="keyword">int</span>[][]matrix, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">		Queue&lt;Node&gt; queue = <span class="keyword">new</span> PriorityQueue&lt;&gt;();</span><br><span class="line">		Set&lt;Node&gt; visited = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">		Node initStatus = <span class="keyword">new</span> Node(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">		queue.offer(initStatus);</span><br><span class="line">		visited.add(initStatus);</span><br><span class="line">		<span class="keyword">int</span>[][] adj = &#123;&#123;<span class="number">0</span>,<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,-<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;-<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;-<span class="number">1</span>,-<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,-<span class="number">1</span>&#125;,&#123;-<span class="number">1</span>,<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">1</span>&#125;&#125;;</span><br><span class="line">		<span class="keyword">while</span>(!queue.isEmpty())&#123;</span><br><span class="line">			Node parentNode = queue.poll();</span><br><span class="line">			System.out.println(parentNode.toString());</span><br><span class="line">			<span class="keyword">if</span>(parentNode.x == m-<span class="number">1</span> &amp;&amp; parentNode.y == n-<span class="number">1</span>)</span><br><span class="line">				<span class="keyword">return</span> parentNode.gScore;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span>[]tmp: adj) &#123;</span><br><span class="line">				<span class="keyword">int</span> x = parentNode.x + tmp[<span class="number">0</span>];</span><br><span class="line">				<span class="keyword">int</span> y = parentNode.y + tmp[<span class="number">1</span>];</span><br><span class="line">				<span class="keyword">if</span> (x &lt; <span class="number">0</span> || x &gt;= m || y &lt; <span class="number">0</span> || y &gt;= n || matrix[x][y] == <span class="number">1</span>)</span><br><span class="line">					<span class="keyword">continue</span>;</span><br><span class="line">				Node curNode = <span class="keyword">new</span> Node(x,y);</span><br><span class="line">				curNode.setgScore(parentNode.gScore + <span class="number">1</span>); <span class="comment">//Specific scenario</span></span><br><span class="line">				<span class="keyword">if</span>(!visited.contains(curNode))&#123;</span><br><span class="line">					visited.add(curNode);</span><br><span class="line">					queue.offer(curNode);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * From (0,0) to (m-1,n-1)</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> matrix : 0 means empty and 1 means obstacle</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">AStar</span><span class="params">(<span class="keyword">int</span>[][]matrix, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">		Map&lt;Node,Integer&gt; openList = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">		<span class="comment">// TreeMap does not work, For TreeMap ContainsKey using compareTo() not equals()</span></span><br><span class="line">		<span class="comment">// The deep reason is the implement of TreeMap is RBT</span></span><br><span class="line">		Queue&lt;Node&gt; openQueue = <span class="keyword">new</span> PriorityQueue&lt;&gt;();</span><br><span class="line">		Map&lt;Node,Integer&gt; closeList = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">		Node initStatus = <span class="keyword">new</span> Node(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">		openList.put(initStatus,<span class="number">0</span>);</span><br><span class="line">		openQueue.add(initStatus);</span><br><span class="line">		<span class="keyword">int</span>[][] adj = &#123;&#123;<span class="number">0</span>,<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,-<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;-<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;-<span class="number">1</span>,-<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,-<span class="number">1</span>&#125;,&#123;-<span class="number">1</span>,<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">1</span>&#125;&#125;;</span><br><span class="line">		<span class="keyword">while</span>(!openQueue.isEmpty())&#123;</span><br><span class="line">			Node parentNode = openQueue.poll();</span><br><span class="line">			System.out.println(parentNode.toString());</span><br><span class="line">			openList.remove(parentNode);</span><br><span class="line">			<span class="keyword">if</span>(parentNode.x == m-<span class="number">1</span> &amp;&amp; parentNode.y == n-<span class="number">1</span>)</span><br><span class="line">				<span class="keyword">return</span> parentNode.gScore;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span>[]tmp: adj)&#123;</span><br><span class="line">				<span class="keyword">int</span> x = parentNode.x + tmp[<span class="number">0</span>];</span><br><span class="line">				<span class="keyword">int</span> y = parentNode.y + tmp[<span class="number">1</span>];</span><br><span class="line">				<span class="keyword">if</span>(x &lt; <span class="number">0</span> || x &gt;= m || y &lt; <span class="number">0</span> || y &gt;= n || matrix[x][y] == <span class="number">1</span>)</span><br><span class="line">					<span class="keyword">continue</span>;</span><br><span class="line">				Node curNode = <span class="keyword">new</span> Node(x,y);</span><br><span class="line">				<span class="keyword">int</span> gScore = parentNode.gScore + <span class="number">1</span>; <span class="comment">//Specific scenario</span></span><br><span class="line">				<span class="keyword">int</span> hScore = Math.abs(m-<span class="number">1</span>-x) + Math.abs(n-<span class="number">1</span>-y); <span class="comment">//Manhattan distance</span></span><br><span class="line">				<span class="keyword">int</span> fScore = gScore + hScore;</span><br><span class="line">				curNode.setgScore(gScore);</span><br><span class="line">				curNode.sethScore(hScore);</span><br><span class="line">				curNode.setfScore(fScore);</span><br><span class="line">				curNode.setParent(parentNode);</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span>(openList.containsKey(curNode) &amp;&amp;  openList.get(curNode) &lt;= fScore)</span><br><span class="line">					<span class="keyword">continue</span>;</span><br><span class="line">				<span class="keyword">if</span>(closeList.containsKey(curNode) &amp;&amp; closeList.get(curNode) &lt;= fScore)</span><br><span class="line">					<span class="keyword">continue</span>;</span><br><span class="line"><span class="comment">//              //不需要remove，因为加入open之后，还是要再次进入close，更新新的fscore</span></span><br><span class="line"><span class="comment">//                if(closeList.containsKey(curNode)) &#123;</span></span><br><span class="line"><span class="comment">//                    if (closeList.get(curNode) &lt;= fScore)</span></span><br><span class="line"><span class="comment">//                        continue;</span></span><br><span class="line"><span class="comment">//                    else</span></span><br><span class="line"><span class="comment">//                        closeList.remove(curNode);</span></span><br><span class="line"><span class="comment">//                    // 最好remove，防止同时出现open，close</span></span><br><span class="line"><span class="comment">//                &#125;</span></span><br><span class="line">				openList.put(curNode,fScore);</span><br><span class="line">				openQueue.add(curNode);</span><br><span class="line">				closeList.put(parentNode,parentNode.fScore);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    <div>全文完。</div>
+  </article>
+  <div class="toc-container">
+    
+
+  </div>
+</div>
+<div class="copyright">
+    <span>本作品采用</span>
+    <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>
+    <span>进行许可。 转载时请注明原文链接。</span>
+</div>
+<div class="share" style="width: 100%;">
+  <div style="margin: auto; text-align: center; font-size: 0.8em; color: grey;">常怀感恩</div>
+  
+</div>
+
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/2020/03/13/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E7%AE%97%E6%B3%95-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84I/" rel="next" title="每天一个算法-最短路径">
+          每天一个算法-最短路径
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/2020/03/17/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E7%AE%97%E6%B3%95-Union-Find/" rel="prev" title="每天一个算法-Union Find">
+            每天一个算法-Union Find
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
+    </div>
+
+    
+
+  </div>
+  <footer class="footer text-center">
+    <div id="bottom-inner">
+        <a class="bottom-item" target="_blank" rel="noopener" href="https://xyma.com">首页</a> |
+        <a class="bottom-item" href="https://xyma.com" target="_blank">主站</a> |
+        <a class="bottom-item" href="https://github.com/xapcloud" target="_blank">GitHub</a> |
+        <a class="bottom-item" href="https://hexo.io" target="_blank">Powered by hexo</a> |
+        <a class="bottom-item" href="https://github.com/KevinOfNeu/hexo-theme-xoxo" target="_blank">Theme xoxo</a>
+    </div>
+</footer>
+  
+
+<script>
+  (function(window, document, undefined) {
+
+    var timer = null;
+
+    function returnTop() {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(function fn() {
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+          timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+
+    var hearts = [];
+    window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          setTimeout(callback, 1000 / 60);
+        }
+    })();
+    init();
+
+    function init() {
+      css(".heart{z-index:9999;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+      attachEvent();
+      gameloop();
+      addMenuEvent();
+    }
+
+    function gameloop() {
+      for (var i = 0; i < hearts.length; i++) {
+        if (hearts[i].alpha <= 0) {
+          document.body.removeChild(hearts[i].el);
+          hearts.splice(i, 1);
+          continue;
+        }
+        hearts[i].y--;
+        hearts[i].scale += 0.004;
+        hearts[i].alpha -= 0.013;
+        hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+      }
+      requestAnimationFrame(gameloop);
+    }
+
+    /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+  
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

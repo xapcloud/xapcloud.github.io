@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#202020"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+  
+  
+    <meta name="keywords" content="Algorithm,Medium," />
+  
+
+  
+    <meta name="description" content="『Leetcode』Spiral Matrix" />
+  
+  
+  <link rel="icon" type="image/x-icon" href="/avatar.png">
+  <title>『Leetcode』Spiral Matrix [ xyma ]</title>
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css">
+    
+      <link rel="stylesheet" href="/css/xoxo.css">
+    
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <div class="nav-container">
+    <nav class="home-menu pure-menu pure-menu-horizontal">
+  <a class="pure-menu-heading" href="/">
+    <img class="avatar" src="http://xyma.me/images/avatar.png">
+    <span class="title">xyma</span>
+  </a>
+
+  <ul class="pure-menu-list clearfix">
+      
+          
+            <li class="pure-menu-item"><a href="/" class="pure-menu-link">主页</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/archives/" class="pure-menu-link">所有文章</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/tags/" class="pure-menu-link">标签云</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/me/" class="pure-menu-link">关于我</a></li>
+          
+      
+  </ul>
+   
+</nav>
+
+  </div>
+
+  <div class="container" id="content-outer">
+    <div class="inner" id="content-inner">
+      <div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        『Leetcode』Spiral Matrix
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2016-12-11T02:45:05.000Z">
+        2016-12-11
+      </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Medium/" rel="tag">Medium</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">
+      <span id="busuanzi_value_page_pv"></span> 点击
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 3 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <p>Given a matrix of <em>m x n</em> elements (m rows, n columns), return all elements of the matrix in spiral order.</p>
+<p>For example, Given the following matrix:</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">  [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">  [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>You should return <font color = red>[1,2,3,6,9,8,7,4,5]</font>.</p>
+<span id="more"></span>
+<h4 id="solution">Solution</h4>
+<p>　　这是个比较简单的题目，难度为Medium。较为简单的思路即我们完全按照题目中的要求来不断遍历整个矩阵，每次遍历一圈，然后逐渐缩小。</p>
+<p>　　每次遍历都从左上角 (x,y) 开始，按照(x,y) → (x,n-y-1) → (m-x-1,n-y-1) → (m-x-1,y) 的顺序，然后x，y分别加1，直到m/2或者n/2，代码就不贴了。</p>
+<p>​</p>
+<p>　　这里额外提供一种思路，虽然实现起来和最后的效果和上面完全相同。</p>
+<p>　　仔细阅读问题中遍历的方向，发现这个遍历方向有个优先级循环，即<font color=red>上 &gt; 右 &gt; 下 &gt; 左 &gt; 上</font>， 有了这个优先级顺序以后，我们就可以更加简单的实现代码，而不必去计算每次走的步数。</p>
+<p>​　　代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">spiralOrder</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;     </span><br><span class="line">        List&lt;Integer&gt; result = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">if</span>(matrix.length == <span class="number">0</span> || matrix[<span class="number">0</span>].length == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> rows = matrix.length;</span><br><span class="line">        <span class="keyword">int</span> columns = matrix[<span class="number">0</span>].length;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> totalNum = rows*columns;</span><br><span class="line">        <span class="keyword">int</span>[][] mark = <span class="keyword">new</span> <span class="keyword">int</span>[rows][columns];</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; totalNum; i ++)&#123;</span><br><span class="line">            result.add(matrix[x][y]);</span><br><span class="line">            mark[x][y] = <span class="number">1</span>;</span><br><span class="line">            <span class="comment">//If satisfy leftforward and upfoward, left should be selected</span></span><br><span class="line">            <span class="keyword">if</span>(x &gt; <span class="number">0</span> &amp;&amp; mark[x-<span class="number">1</span>][y] == <span class="number">0</span> &amp;&amp; y &gt; <span class="number">0</span> &amp;&amp; mark[x][y-<span class="number">1</span>] == <span class="number">0</span>)&#123;</span><br><span class="line">                y = y -<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//up</span></span><br><span class="line">            <span class="keyword">if</span>(x &gt; <span class="number">0</span> &amp;&amp; mark[x-<span class="number">1</span>][y] == <span class="number">0</span>)&#123;</span><br><span class="line">                x = x-<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//right</span></span><br><span class="line">            <span class="keyword">if</span>(y &lt; columns-<span class="number">1</span> &amp;&amp; mark[x][y+<span class="number">1</span>] == <span class="number">0</span>)&#123;</span><br><span class="line">                y = y+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//down </span></span><br><span class="line">            <span class="keyword">if</span>(x &lt; rows-<span class="number">1</span> &amp;&amp; mark[x+<span class="number">1</span>][y] == <span class="number">0</span>)&#123;</span><br><span class="line">                x = x+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//left</span></span><br><span class="line">            <span class="keyword">if</span>(y &gt; <span class="number">0</span> &amp;&amp; mark[x][y-<span class="number">1</span>] == <span class="number">0</span>)&#123;</span><br><span class="line">                y = y-<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>AC！</p>
+
+    </div>
+
+    <div>全文完。</div>
+  </article>
+  <div class="toc-container">
+    
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">Posts</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#solution"><span class="toc-text">Solution</span></a></li></ol>
+  </div>
+
+
+  </div>
+</div>
+<div class="copyright">
+    <span>本作品采用</span>
+    <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>
+    <span>进行许可。 转载时请注明原文链接。</span>
+</div>
+<div class="share" style="width: 100%;">
+  <div style="margin: auto; text-align: center; font-size: 0.8em; color: grey;">常怀感恩</div>
+  
+</div>
+
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/2016/12/05/GeneratingVideosWithSceneDynamics/" rel="next" title="『论文阅读』Generating Videos With Scene Dynamics">
+          『论文阅读』Generating Videos With Scene Dynamics
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/2016/12/11/UnionPaperOfGAN/" rel="prev" title="『论文阅读』GAN论文整理">
+            『论文阅读』GAN论文整理
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
+    </div>
+
+    
+
+  </div>
+  <footer class="footer text-center">
+    <div id="bottom-inner">
+        <a class="bottom-item" target="_blank" rel="noopener" href="https://xyma.com">首页</a> |
+        <a class="bottom-item" href="https://xyma.com" target="_blank">主站</a> |
+        <a class="bottom-item" href="https://github.com/xapcloud" target="_blank">GitHub</a> |
+        <a class="bottom-item" href="https://hexo.io" target="_blank">Powered by hexo</a> |
+        <a class="bottom-item" href="https://github.com/KevinOfNeu/hexo-theme-xoxo" target="_blank">Theme xoxo</a>
+    </div>
+</footer>
+  
+
+<script>
+  (function(window, document, undefined) {
+
+    var timer = null;
+
+    function returnTop() {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(function fn() {
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+          timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+
+    var hearts = [];
+    window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          setTimeout(callback, 1000 / 60);
+        }
+    })();
+    init();
+
+    function init() {
+      css(".heart{z-index:9999;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+      attachEvent();
+      gameloop();
+      addMenuEvent();
+    }
+
+    function gameloop() {
+      for (var i = 0; i < hearts.length; i++) {
+        if (hearts[i].alpha <= 0) {
+          document.body.removeChild(hearts[i].el);
+          hearts.splice(i, 1);
+          continue;
+        }
+        hearts[i].y--;
+        hearts[i].scale += 0.004;
+        hearts[i].alpha -= 0.013;
+        hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+      }
+      requestAnimationFrame(gameloop);
+    }
+
+    /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+  
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

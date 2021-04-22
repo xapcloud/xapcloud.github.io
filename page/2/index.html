@@ -1,0 +1,515 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#202020"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+  
+  
+    <meta name="keywords" content="" />
+  
+
+  
+    <meta name="description" content="xyma," />
+  
+  
+  <link rel="icon" type="image/x-icon" href="/avatar.png">
+  <title> [ xyma ]</title>
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css">
+    
+      <link rel="stylesheet" href="/css/xoxo.css">
+    
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <div class="nav-container">
+    <nav class="home-menu pure-menu pure-menu-horizontal">
+  <a class="pure-menu-heading" href="/">
+    <img class="avatar" src="http://xyma.me/images/avatar.png">
+    <span class="title">xyma</span>
+  </a>
+
+  <ul class="pure-menu-list clearfix">
+      
+          
+            <li class="pure-menu-item"><a href="/" class="pure-menu-link">主页</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/archives/" class="pure-menu-link">所有文章</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/tags/" class="pure-menu-link">标签云</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/me/" class="pure-menu-link">关于我</a></li>
+          
+      
+  </ul>
+   
+</nav>
+
+  </div>
+
+  <div class="container" id="content-outer">
+    <div class="inner" id="content-inner">
+      
+
+  <div class="recent-posts">
+    
+
+      <article class="recent-post-item">
+        <a class="title" href="/2017/04/02/JVM_thread/"><h2>Java 线程</h2></a>
+        <div class="post-meta">
+          
+          <time class="time" datetime="2017-04-02T06:29:12.000Z">
+            2017-04-02
+          </time>
+          
+          <span class="slash">/</span>
+          
+          <ul class="index-tag-list" itemprop="keywords"><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+          
+
+        </div>
+
+        
+          <div class="post-excerpt">
+            <p>我们知道，线程是比进程更轻量级的<strong>调度执行单位</strong>，线程的引入，可以把一个进程的<strong>资源分配</strong>和<strong>执行调度</strong>分开，各个线程既可以共享进程资源（内存地址、文件I/O等），又可以独立调度（线程是CPU调度的基本单位）。</p>
+          </div>
+        
+        <a class="more" href="/2017/04/02/JVM_thread/"> 阅读全文〉</a>
+      </article>
+    
+
+      <article class="recent-post-item">
+        <a class="title" href="/2017/03/24/Class_loader/"><h2>Class Loading </h2></a>
+        <div class="post-meta">
+          
+          <time class="time" datetime="2017-03-24T05:38:35.000Z">
+            2017-03-24
+          </time>
+          
+          <span class="slash">/</span>
+          
+          <ul class="index-tag-list" itemprop="keywords"><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+          
+
+        </div>
+
+        
+          <div class="post-excerpt">
+            <p>JVM把class文件加载的内存，并对数据进行校验、转换解析和初始化，最终形成JVM可以直接使用的Java类型的过程就是加载机制。</p>
+<p>与那些在编译时需要进行连接工作的语言不同，在java语言里，类型的加载、连接和初始化过程都是在程序运行期间完成的。</p>
+          </div>
+        
+        <a class="more" href="/2017/03/24/Class_loader/"> 阅读全文〉</a>
+      </article>
+    
+
+      <article class="recent-post-item">
+        <a class="title" href="/2017/03/24/Class-File/"><h2>Class File </h2></a>
+        <div class="post-meta">
+          
+          <time class="time" datetime="2017-03-24T05:18:35.000Z">
+            2017-03-24
+          </time>
+          
+          <span class="slash">/</span>
+          
+          <ul class="index-tag-list" itemprop="keywords"><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+          
+
+        </div>
+
+        
+          <div class="post-excerpt">
+            <p>实现语言无关性和平台无关性的基础是虚拟机和字节码的存储格式，Java 虚拟机不和包括Java在内的任何语言把您堕过，它只与“Class”这种特定的二进制文件格式所关联，Class文件中包含了Java虚拟机指令集和符号表以及若干其他辅助信息。</p>
+          </div>
+        
+        <a class="more" href="/2017/03/24/Class-File/"> 阅读全文〉</a>
+      </article>
+    
+
+      <article class="recent-post-item">
+        <a class="title" href="/2017/03/23/javaGC/"><h2>javaGC</h2></a>
+        <div class="post-meta">
+          
+          <time class="time" datetime="2017-03-23T07:14:09.000Z">
+            2017-03-23
+          </time>
+          
+          <span class="slash">/</span>
+          
+          <ul class="index-tag-list" itemprop="keywords"><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+          
+
+        </div>
+
+        
+          <div class="post-excerpt">
+            <p>根据Java内存运行时区域的划分，我们知道程序计数器、虚拟机栈和本地方法栈随着线程生成和回收，所以垃圾回收不需要考虑这部分，主要考虑java堆。</p>
+          </div>
+        
+        <a class="more" href="/2017/03/23/javaGC/"> 阅读全文〉</a>
+      </article>
+    
+
+      <article class="recent-post-item">
+        <a class="title" href="/2017/03/22/JVMNotes/"><h2>JVM Notes</h2></a>
+        <div class="post-meta">
+          
+          <time class="time" datetime="2017-03-22T12:26:35.000Z">
+            2017-03-22
+          </time>
+          
+          <span class="slash">/</span>
+          
+          <ul class="index-tag-list" itemprop="keywords"><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+          
+
+        </div>
+
+        
+          <div class="post-excerpt">
+            <p>Java 技术体系包括以下几个组成部分：</p>
+<ul>
+<li>Java programming language</li>
+<li>Java Virtural Machine</li>
+<li>Class files</li>
+<li>Java api</li>
+<li>Third-party Java library</li>
+</ul>
+          </div>
+        
+        <a class="more" href="/2017/03/22/JVMNotes/"> 阅读全文〉</a>
+      </article>
+    
+
+      <article class="recent-post-item">
+        <a class="title" href="/2016/12/29/Crawler-For-LeetCode_1/"><h2>Crawler For LeetCode II</h2></a>
+        <div class="post-meta">
+          
+          <time class="time" datetime="2016-12-29T14:38:27.000Z">
+            2016-12-29
+          </time>
+          
+          <span class="slash">/</span>
+          
+          <ul class="index-tag-list" itemprop="keywords"><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/crawler/" rel="tag">crawler</a></li></ul>
+          
+
+        </div>
+
+        
+          <div class="post-excerpt">
+            <p>先贴上代码，以后再更新！</p>
+<p>具体可以看<a target="_blank" rel="noopener" href="https://github.com/xapcloud/Code-Grab-from-Leetcode">Code-Grab-from-Leetcode</a></p>
+          </div>
+        
+        <a class="more" href="/2016/12/29/Crawler-For-LeetCode_1/"> 阅读全文〉</a>
+      </article>
+    
+
+      <article class="recent-post-item">
+        <a class="title" href="/2016/12/16/Crawler-For-LeetCode/"><h2>Crawler For LeetCode</h2></a>
+        <div class="post-meta">
+          
+          <time class="time" datetime="2016-12-16T14:38:27.000Z">
+            2016-12-16
+          </time>
+          
+          <span class="slash">/</span>
+          
+          <ul class="index-tag-list" itemprop="keywords"><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/crawler/" rel="tag">crawler</a></li></ul>
+          
+
+        </div>
+
+        
+          <div class="post-excerpt">
+            <blockquote>
+<p>This a very simple tutorial for python crawler written with Requests and BeautifulSoup, the crawler is used to grab the leetcode subjects and your ac solution codes, better reading for fresh hands.</p>
+</blockquote>
+          </div>
+        
+        <a class="more" href="/2016/12/16/Crawler-For-LeetCode/"> 阅读全文〉</a>
+      </article>
+    
+
+      <article class="recent-post-item">
+        <a class="title" href="/2016/12/15/leetcode/"><h2>『Leetcode』All My AC Subjects and Solutions</h2></a>
+        <div class="post-meta">
+          
+          <time class="time" datetime="2016-12-15T14:30:33.000Z">
+            2016-12-15
+          </time>
+          
+          <span class="slash">/</span>
+          
+          <ul class="index-tag-list" itemprop="keywords"><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
+          
+
+        </div>
+
+        
+          <div class="post-excerpt">
+            <p>Follows are all my ac Leetcode solutions， total 212.</p>
+<p>Since it has been a real long time, i will not give some detail expalination.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/xapcloud/Code-Grab-from-Leetcode/tree/master/leetcode_with_solution/1_two-sum.md">1 Two Sum</a><br><a target="_blank" rel="noopener" href="https://github.com/xapcloud/Code-Grab-from-Leetcode/tree/master/leetcode_with_solution/2_add-two-numbers.md">2 Add Two Numbers</a><br><a target="_blank" rel="noopener" href="https://github.com/xapcloud/Code-Grab-from-Leetcode/tree/master/leetcode_with_solution/3_longest-substring-without-repeating-characters.md">3 Longest Substring Without Repeating Characters</a><br><a target="_blank" rel="noopener" href="https://github.com/xapcloud/Code-Grab-from-Leetcode/tree/master/leetcode_with_solution/4_median-of-two-sorted-arrays.md">4 Median of Two Sorted Arrays</a><br>
+          </div>
+        
+        <a class="more" href="/2016/12/15/leetcode/"> 阅读全文〉</a>
+      </article>
+    
+
+      <article class="recent-post-item">
+        <a class="title" href="/2016/12/14/SearchA2DMatrixII/"><h2>『Leetcode』Search a 2D Matrix II</h2></a>
+        <div class="post-meta">
+          
+          <time class="time" datetime="2016-12-14T05:36:25.000Z">
+            2016-12-14
+          </time>
+          
+          <span class="slash">/</span>
+          
+          <ul class="index-tag-list" itemprop="keywords"><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/Binary-Search/" rel="tag">Binary Search</a></li><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/Divide-and-Conquer/" rel="tag">Divide and Conquer</a></li><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/Mideum/" rel="tag">Mideum</a></li></ul>
+          
+
+        </div>
+
+        
+          <div class="post-excerpt">
+            <p>Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:</p>
+<ul>
+<li>Integers in each row are sorted in ascending from left to right.</li>
+<li>Integers in each column are sorted in ascending from top to bottom.</li>
+</ul>
+          </div>
+        
+        <a class="more" href="/2016/12/14/SearchA2DMatrixII/"> 阅读全文〉</a>
+      </article>
+    
+
+      <article class="recent-post-item">
+        <a class="title" href="/2016/12/13/Image-to-ImageTranslationwithConditionalAdversarialNetworks/"><h2>『论文阅读』Image-to-Image Translation with Conditional Adversarial Networks</h2></a>
+        <div class="post-meta">
+          
+          <time class="time" datetime="2016-12-13T12:29:08.000Z">
+            2016-12-13
+          </time>
+          
+          <span class="slash">/</span>
+          
+          <ul class="index-tag-list" itemprop="keywords"><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/GAN/" rel="tag">GAN</a></li><li class="index-tag-list-item"><a class="index-tag-list-link" href="/tags/arXiv/" rel="tag">arXiv</a></li></ul>
+          
+
+        </div>
+
+        
+          <div class="post-excerpt">
+            <blockquote>
+<p>来源：<a href="https://link.zhihu.com/?target=https%3A//phillipi.github.io/pix2pix/">Image-to-Image Translation with Conditional Adversarial Nets</a></p>
+<p>源码：<a target="_blank" rel="noopener" href="https://github.com/phillipi/pix2pix">Github</a></p>
+</blockquote>
+<p>这篇文章主要提供了一个基于cGAN的模型，并且利用这个general的模型可以同时应用到多个任务场景中去，而不需要额外设置模型结果和目标函数。</p>
+<ul>
+<li>Photos to semantic segmentation</li>
+<li>Cityscapes labels to photos</li>
+<li>Colorization</li>
+<li>Facades labels to photo</li>
+<li>Day to night</li>
+<li>The edges to photo</li>
+<li>And so on.</li>
+</ul>
+          </div>
+        
+        <a class="more" href="/2016/12/13/Image-to-ImageTranslationwithConditionalAdversarialNetworks/"> 阅读全文〉</a>
+      </article>
+    
+  </div>
+
+
+
+    </div>
+
+    
+      <nav class="page-nav text-center">
+          <a class="extend prev" rel="prev" href="/">〈</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">〉</a>
+      </nav>
+    
+
+  </div>
+  <footer class="footer text-center">
+    <div id="bottom-inner">
+        <a class="bottom-item" target="_blank" rel="noopener" href="https://xyma.com">首页</a> |
+        <a class="bottom-item" href="https://xyma.com" target="_blank">主站</a> |
+        <a class="bottom-item" href="https://github.com/xapcloud" target="_blank">GitHub</a> |
+        <a class="bottom-item" href="https://hexo.io" target="_blank">Powered by hexo</a> |
+        <a class="bottom-item" href="https://github.com/KevinOfNeu/hexo-theme-xoxo" target="_blank">Theme xoxo</a>
+    </div>
+</footer>
+  
+
+<script>
+  (function(window, document, undefined) {
+
+    var timer = null;
+
+    function returnTop() {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(function fn() {
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+          timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+
+    var hearts = [];
+    window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          setTimeout(callback, 1000 / 60);
+        }
+    })();
+    init();
+
+    function init() {
+      css(".heart{z-index:9999;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+      attachEvent();
+      gameloop();
+      addMenuEvent();
+    }
+
+    function gameloop() {
+      for (var i = 0; i < hearts.length; i++) {
+        if (hearts[i].alpha <= 0) {
+          document.body.removeChild(hearts[i].el);
+          hearts.splice(i, 1);
+          continue;
+        }
+        hearts[i].y--;
+        hearts[i].scale += 0.004;
+        hearts[i].alpha -= 0.013;
+        hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+      }
+      requestAnimationFrame(gameloop);
+    }
+
+    /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+  
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
