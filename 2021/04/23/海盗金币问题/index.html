@@ -13,15 +13,15 @@
   <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
   
   
-    <meta name="keywords" content="GAN,arXiv," />
+    <meta name="keywords" content="Thinking," />
   
 
   
-    <meta name="description" content="『论文阅读』Image-to-Image Translation with Conditional Adversarial Networks" />
+    <meta name="description" content="海盗金币问题" />
   
   
   <link rel="icon" type="image/x-icon" href="/avatar.png">
-  <title>『论文阅读』Image-to-Image Translation with Conditional Adversarial Networks [ xyma ]</title>
+  <title>海盗金币问题 [ xyma ]</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -75,19 +75,19 @@
   <article class="post" id="post">
     <header class="post-header text-center">
       <h1 class="title">
-        『论文阅读』Image-to-Image Translation with Conditional Adversarial Networks
+        海盗金币问题
       </h1>
       <span>
         
-        <time class="time" datetime="2016-12-13T12:29:08.000Z">
-        2016-12-13
+        <time class="time" datetime="2021-04-23T11:30:52.000Z">
+        2021-04-23
       </time>
         
       </span>
       <span class="slash">/</span>
       <span class="post-meta">
       <span class="post-tags">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GAN/" rel="tag">GAN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arXiv/" rel="tag">arXiv</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thinking/" rel="tag">Thinking</a></li></ul>
       </span>
     </span>
       <span class="slash">/</span>
@@ -95,48 +95,27 @@
       <span id="busuanzi_value_page_pv"></span> 点击
     </span>
       <span class="slash">/</span>
-      <span class="read">阅读耗时 3 分钟</span>
+      <span class="read">阅读耗时 4 分钟</span>
     </header>
 
     <div class="post-content">
       <blockquote>
-<p>来源：<a href="https://link.zhihu.com/?target=https%3A//phillipi.github.io/pix2pix/">Image-to-Image Translation with Conditional Adversarial Nets</a></p>
-<p>源码：<a target="_blank" rel="noopener" href="https://github.com/phillipi/pix2pix">Github</a></p>
+<p>5个海盗分100个金币，如何分配？</p>
 </blockquote>
-<p>这篇文章主要提供了一个基于cGAN的模型，并且利用这个general的模型可以同时应用到多个任务场景中去，而不需要额外设置模型结果和目标函数。</p>
-<ul>
-<li>Photos to semantic segmentation</li>
-<li>Cityscapes labels to photos</li>
-<li>Colorization</li>
-<li>Facades labels to photo</li>
-<li>Day to night</li>
-<li>The edges to photo</li>
-<li>And so on.</li>
-</ul>
 <span id="more"></span>
-<h1 id="section"></h1>
-<p>cGAN的generator： <span class="math display">\[
-G：{x, z} → G(x,z) → y
-\]</span> <strong>x</strong>: input image, <strong>z</strong>: noise image, <strong>y:</strong> real image</p>
-<p>Discriminator主要工作即尽量区分开<span class="math inline">\(G(x,z)\)</span> 和<span class="math inline">\(y\)</span> 的区别。而generator则尽量使得Discriminator区分不开。</p>
-<p>本文的主要贡献是在cGAN的基础上做了一些改进。</p>
-<h2 id="objective-function">Objective Function</h2>
-<p>对于目标函数进行了修改，在原有GAN网络的目标函数的的基础上，加上了L1约束，使得generator生成的图像与原图像尽量相近。感觉类似一个AutoEncoder的过程。</p>
-<p><img src="/images/ItoI2.png" /></p>
-<h2 id="network-architecture">Network Architecture</h2>
-<h3 id="generator-with-skips">Generator with Skips</h3>
-<p>A defining feature of image-to-image translation problems is that they map a high resolution input grid to a high resolu- tion output grid. In addition, for the problems we consider, the input and output differ in surface appearance, but both are renderings of the same underlying structure. Therefore, structure in the input is roughly aligned with structure in the output. We design the generator architecture around these considerations.</p>
-<p>即认为原图和目标图片存在相同的底部结构。所以对于模型的生成部分，采用U-Net.</p>
-<figure>
-<img src="/images/ItoI1.png" alt="Architecture of Generator" /><figcaption aria-hidden="true">Architecture of Generator</figcaption>
-</figure>
-<p>U-net 结构如下图：</p>
-<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1505.04597v1.pdf">U-Net: Convolutional Networks for Biomedical Image Segmentation</a></p>
-<p><img src="/images/ItoI3.png" /></p>
-<h3 id="markovian-discriminator">Markovian Discriminator</h3>
-<p>通常判断都是对生成样本整体进行判断，比如对一张图片来说，就是直接看整张照片是否真实。而且Image-to-Image Translation中很多评价是像素对像素的，所以在这里提出了分块判断的算法，在图像的每个<span class="math inline">\(N\times N\)</span>块上去判断是否为真，最终平均给出结果。</p>
-<h1 id="总结">总结：</h1>
-<p>The results in this paper suggest that conditional adver- sarial networks are a promising approach for many image- to-image translation tasks, especially those involving highly structured graphical outputs. These networks learn a loss adapted to the task and data at hand, which makes them ap- plicable in a wide variety of settings.</p>
+<p>​ 5个海盗编号0-4， 要分配100枚金币。从编号为4开始，设计一个分配方案，如果能够使得超过半数的人同意分配方案，则按该方式分配，如果小于半数，则将此海盗丢入海中，3号依次进行。如果想要获得最多的金币，并且不被丢入海中，4号应该如何分配？</p>
+<h4 id="解题思路">解题思路</h4>
+<p>​ 由于需要超过半数的人同意，即需要包括自己在内的3个人同意方案方可。而要使得其他海盗同意该方案，则需要使得海盗得到的金币要超过此方案之外的任一方案。</p>
+<p>​ 我们依然从最简单的情形入手：</p>
+<ul>
+<li>1个海盗：全部分配给自己即可。</li>
+<li>2个海盗：海盗1无论如何分配，0均会投反对票，使得问题回退到情景一。</li>
+<li>3个海盗：只需给与海盗1一枚金币，海盗1就会同意该方案，否则1无法得到任何金币。所以分配方案为<span class="math inline">\(91, 1, 0\)</span></li>
+<li>4个海盗：依次类推</li>
+</ul>
+<p><img src="/images/pirate.png" width = "500" height = "300" alt="最优分配" align=center /></p>
+<h4 id="解题代码">解题代码</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pirateCoinAllocation</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        n pirates split the k gold coin, from index 0 to index n-1, decide the allocation ,</span></span><br><span class="line"><span class="comment">        if over half of the pirates agree, then do it, else kill the one, and next. Get the</span></span><br><span class="line"><span class="comment">        max number of gold coin the index 0 can get and also survive.Note that one pirate </span></span><br><span class="line"><span class="comment">        vote death unless it can make him get more coins.</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        Queue&lt;Integer&gt; queue = <span class="keyword">new</span> PriorityQueue&lt;&gt;();</span><br><span class="line">        queue.offer(k);</span><br><span class="line">        <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">        System.out.println(queue);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> needVoteCnt = i / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> curSum = <span class="number">0</span>;</span><br><span class="line">            List&lt;Integer&gt; set = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            <span class="keyword">if</span> (needVoteCnt &gt; queue.size()) &#123;</span><br><span class="line">                queue.offer(<span class="number">0</span>);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; needVoteCnt; j++) &#123;</span><br><span class="line">                curSum += queue.peek() + <span class="number">1</span>;</span><br><span class="line">                set.add(queue.poll());</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (curSum &gt; k) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> c : set) &#123;</span><br><span class="line">                    queue.offer(c);</span><br><span class="line">                &#125;</span><br><span class="line">                queue.offer(<span class="number">0</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                queue.clear();</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i - <span class="number">1</span> - needVoteCnt; j++) &#123;</span><br><span class="line">                    queue.offer(<span class="number">0</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> c : set) &#123;</span><br><span class="line">                    queue.offer(c + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                queue.offer(k - curSum);</span><br><span class="line">                ret = k - curSum;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.printf(<span class="string">&quot;cur number of pirates: %d, allocation: %s\n&quot;</span>, i, queue);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -148,7 +127,7 @@ G：{x, z} → G(x,z) → y
     
   <div id="toc" class="toc-article">
     <strong class="toc-title">Posts</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#section"><span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#objective-function"><span class="toc-text">Objective Function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#network-architecture"><span class="toc-text">Network Architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#generator-with-skips"><span class="toc-text">Generator with Skips</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#markovian-discriminator"><span class="toc-text">Markovian Discriminator</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结：</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E4%BB%A3%E7%A0%81"><span class="toc-text">解题代码</span></a></li></ol>
   </div>
 
 
@@ -169,19 +148,14 @@ G：{x, z} → G(x,z) → y
       <div class="post-nav-item post-nav-next">
         
           <span>〈 </span>
-          <a href="/2016/12/13/hello-world/" rel="next" title="Hello World">
-          Hello World
+          <a href="/2021/04/22/%E7%BA%A2%E7%9C%BC%E7%9D%9B%E8%93%9D%E7%9C%BC%E7%9D%9B/" rel="next" title="红眼睛蓝眼睛">
+          红眼睛蓝眼睛
           </a>
         
       </div>
   
       <div class="post-nav-item post-nav-prev">
           
-          <a href="/2016/12/14/SearchA2DMatrixII/" rel="prev" title="『Leetcode』Search a 2D Matrix II">
-            『Leetcode』Search a 2D Matrix II
-          </a>
-          <span>〉</span>
-        
       </div>
     </div>
   
